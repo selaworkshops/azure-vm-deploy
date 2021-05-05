@@ -10,3 +10,4 @@ In addition, you will find the terraform project used to create the target VM in
 
 1. A Jenkins server up and running (steps listed below)
 2. A storage account to store the terraform state
+3. Create a service principal for terraform
