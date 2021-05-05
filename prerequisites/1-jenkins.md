@@ -8,7 +8,7 @@ az login
 
 - Set azure cli to use the desired subscription
 ```
-az account set --subscription ${YOUR-SUBSCRIPTION}
+az account set --subscription ${YOUR_SUBSCRIPTION_ID}
 ```
 
 - Create a file named "cloud-init-jenkins.txt" with the content below:
