@@ -3,6 +3,10 @@
 This terraform template create the following resources:
 
 - Resource Group
+- Virtual Network
+- Subnet
+- Public IP
+- Network Interface
 - Virtual Machine
 
 # Prerequisites
