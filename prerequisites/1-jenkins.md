@@ -78,7 +78,29 @@ service jenkins status
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
-Using the IP address, open the following URL in a browser
+- Install terraform
+```
+sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
+```
+```
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+```
+```
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+```
+```
+sudo apt-get update && sudo apt-get install terraform
+```
+```
+terraform version
+```
+
+- Install azure cli
+```
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+```
+
+- Using the IP address, browse to jenkins to finsish the configuration
 ```
 http://<ip_address>:8080    
 ```
