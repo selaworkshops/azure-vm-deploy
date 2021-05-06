@@ -67,15 +67,15 @@ resource "azurerm_linux_virtual_machine" "myvm" {
   }
 }
 
-# Create a storage accout
-resource "azurerm_storage_account" "storageaccount" {
-  name                     = "leonjalfonexampletf"
-  resource_group_name      = azurerm_resource_group.myresourcegroup.name
-  location                 = azurerm_resource_group.myresourcegroup.location
-  account_tier             = "Standard"
-  account_replication_type = "GRS"
+# # Create a storage accout
+# resource "azurerm_storage_account" "storageaccount" {
+#   name                     = "leonjalfonexampletf"
+#   resource_group_name      = azurerm_resource_group.myresourcegroup.name
+#   location                 = azurerm_resource_group.myresourcegroup.location
+#   account_tier             = "Standard"
+#   account_replication_type = "GRS"
 
-  tags = {
-    environment = "staging"
-  }
-}
+#   tags = {
+#     environment = "staging"
+#   }
+# }
