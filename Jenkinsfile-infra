@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+    environment {
+        ARM_ACCESS_KEY  = credentials('terraform-backend-access-key')
+        TERRAFORM_VARS  = credentials('leon-jalfon-terraform-vars')
+    }
+
+    stages {
+        stage('Get Sources') {
+            steps {
+                // Clean workspace
+                cleanWs()
+                
+                // Get some code from a GitHub repository
+                git 'https://github.com/selaworkshops/azure-vm-deploy.git'
+            }
+        }
+        stage('Init') {
+            steps {
+                dir("./terraform") {
+                    sh 'mv ${TERRAFORM_VARS} terraform.tfvars.json'
+                    sh 'terraform init'
+                }
+            }
+        }
+        stage('Plan') {
+            steps {
+                dir("./terraform") {
+                    sh 'terraform plan'
+                }
+            }
+        }
+        stage('Approval') {
+            steps {
+                input('Do you want to proceed?')
+            }
+        }
+        stage('Apply') {
+            steps {
+                dir("./terraform") {
+                    sh 'terraform apply -auto-approve'
+                }
+            }
+        }
+    }
+}

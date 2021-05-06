@@ -1,0 +1,30 @@
+pipeline {
+    agent {label 'leon-jalfon'}
+
+    stages {
+        stage('Get Sources') {
+            steps {
+                // Clean workspace
+                cleanWs()
+                
+                // Get some code from a GitHub repository
+                git 'https://github.com/selaworkshops/azure-vm-deploy.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                dir("./demo-app") {
+                    sh 'docker build -t leonjalfon1/demo-app:${BUILD_NUMBER} .'
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                dir("./demo-app") {
+                    sh 'docker stop demo-app || true && docker rm demo-app || true'
+                    sh 'docker run -d -p 80:3000 --name demo-app leonjalfon1/demo-app:${BUILD_NUMBER}'
+                }
+            }
+        }
+    }
+}
